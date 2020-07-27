@@ -363,14 +363,16 @@ static int st7789vada_remove(struct spi_device *spi)
 	return 0;
 }
 
-static void st7789vada_shutdown(struct spi_device *spi)
-{
-	drm_atomic_helper_shutdown(spi_get_drvdata(spi));
-}
 
 static int __maybe_unused st7789vada_pm_suspend(struct device *dev)
 {
 	return drm_mode_config_helper_suspend(dev_get_drvdata(dev));
+}
+
+
+static void st7789vada_shutdown(struct spi_device *spi)
+{
+	drm_atomic_helper_shutdown(spi_get_drvdata(spi));
 }
 
 static int __maybe_unused st7789vada_pm_resume(struct device *dev)
